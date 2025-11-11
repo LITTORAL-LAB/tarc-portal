@@ -1,5 +1,6 @@
+import json
 from datetime import datetime
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from models.chirpstack_event import ChirpStackEvent
 from sqlalchemy import func
@@ -8,6 +9,22 @@ from sqlalchemy.orm import Session
 
 class ChirpStackService:
     """Serviço para processar e armazenar eventos do ChirpStack."""
+
+    @staticmethod
+    def sanitize_payload(data: Any) -> Any:
+        """
+        Remove caracteres NULL (\u0000) do payload que causam erro no PostgreSQL.
+        PostgreSQL não suporta \u0000 em campos de texto/JSONB.
+        """
+        if isinstance(data, dict):
+            return {key: ChirpStackService.sanitize_payload(value) for key, value in data.items()}
+        elif isinstance(data, list):
+            return [ChirpStackService.sanitize_payload(item) for item in data]
+        elif isinstance(data, str):
+            # Remove caracteres NULL e outros caracteres de controle problemáticos
+            return data.replace('\x00', '').replace('\u0000', '')
+        else:
+            return data
 
     @staticmethod
     def determine_event_type(payload: Dict) -> str:
@@ -73,6 +90,9 @@ class ChirpStackService:
         application_name = device_info.get("applicationName")
         event_time = ChirpStackService.parse_event_time(payload.get("time"))
 
+        # Limpa o payload removendo caracteres NULL antes de salvar
+        sanitized_payload = ChirpStackService.sanitize_payload(payload)
+
         # Extrai informações específicas do tipo de evento
         event_data = {
             "event_type": event_type,
@@ -80,7 +100,7 @@ class ChirpStackService:
             "device_name": device_name,
             "application_name": application_name,
             "event_time": event_time,
-            "payload": payload,
+            "payload": sanitized_payload,
         }
 
         # Para eventos 'up'
