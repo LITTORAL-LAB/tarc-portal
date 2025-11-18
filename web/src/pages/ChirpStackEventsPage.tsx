@@ -13,6 +13,7 @@ import {
   Radio,
 } from "lucide-react";
 import { ChirpStackEventsTable } from "@/components/chirpstack-events-table";
+import { ChirpStackCharts } from "@/components/chirpstack-charts";
 import {
   getChirpStackEvents,
   getChirpStackStats,
@@ -254,7 +255,10 @@ export default function ChirpStackEventsPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
+                <label
+                  htmlFor="device-select"
+                  className="text-sm font-medium text-foreground mb-2 block"
+                >
                   Dispositivo
                 </label>
                 <Select
@@ -277,7 +281,10 @@ export default function ChirpStackEventsPage() {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
+                <label
+                  htmlFor="event-type-select"
+                  className="text-sm font-medium text-foreground mb-2 block"
+                >
                   Tipo de Evento
                 </label>
                 <Select
@@ -298,7 +305,10 @@ export default function ChirpStackEventsPage() {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
+                <label
+                  htmlFor="limit-select"
+                  className="text-sm font-medium text-foreground mb-2 block"
+                >
                   Limite de Resultados
                 </label>
                 <Select
@@ -321,6 +331,16 @@ export default function ChirpStackEventsPage() {
               </div>
             </div>
           </Card>
+        )}
+
+        {/* Charts Section */}
+        {events.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-lg font-medium text-foreground mb-4">
+              Análise de Dados RF
+            </h2>
+            <ChirpStackCharts events={events} />
+          </div>
         )}
 
         {/* Events Table */}

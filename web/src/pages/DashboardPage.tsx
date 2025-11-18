@@ -216,6 +216,34 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* ChirpStack Quick Access */}
+        <div className="mb-8">
+          <Card className="p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-500/20">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-lg bg-blue-500/20">
+                  <Radio className="w-8 h-8 text-blue-500" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-1">
+                    Eventos ChirpStack
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Visualize e analise eventos do ChirpStack com gráficos de
+                    SNR, RSSI, frequência e DR
+                  </p>
+                </div>
+              </div>
+              <Link to="/chirpstack/events">
+                <Button size="lg" className="bg-blue-500 hover:bg-blue-600">
+                  <Radio className="w-5 h-5 mr-2" />
+                  Ver Eventos
+                </Button>
+              </Link>
+            </div>
+          </Card>
+        </div>
+
         {/* Devices Table */}
         <div>
           <div className="flex items-center justify-between mb-4">
