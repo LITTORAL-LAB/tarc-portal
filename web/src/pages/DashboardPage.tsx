@@ -9,9 +9,11 @@ import {
   Server,
   Loader2,
   AlertCircle,
+  Radio,
 } from "lucide-react";
 import { DeviceTable } from "@/components/device-table";
 import { getDevices, getStats, type Device, type Stats } from "@/lib/api";
+import { Link } from "react-router-dom";
 
 export default function DashboardPage() {
   const [devices, setDevices] = useState<Device[]>([]);
@@ -107,6 +109,12 @@ export default function DashboardPage() {
               </p>
             </div>
             <div className="flex items-center gap-4">
+              <Link to="/chirpstack/events">
+                <Button variant="outline" size="sm">
+                  <Radio className="w-4 h-4 mr-2" />
+                  Eventos ChirpStack
+                </Button>
+              </Link>
               <Badge variant="outline" className="gap-2">
                 <Server className="w-3 h-3" />
                 {allDevices.length} Dispositivo
