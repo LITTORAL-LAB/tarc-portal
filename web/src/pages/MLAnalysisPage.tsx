@@ -36,7 +36,7 @@ export default function MLAnalysisPage() {
     "clustering" | "prediction" | "classification"
   >("clustering");
   const [targetField, setTargetField] = useState<
-    "temperature" | "rssi" | "vazao"
+    "temperature" | "humidity" | "rssi" | "vazao"
   >("temperature");
   const [timeRange, setTimeRange] = useState<string>("last_30_days");
   const [loading, setLoading] = useState(false);
@@ -456,7 +456,9 @@ export default function MLAnalysisPage() {
                   name="target-field"
                   value={targetField}
                   onValueChange={(value) =>
-                    setTargetField(value as "temperature" | "rssi" | "vazao")
+                    setTargetField(
+                      value as "temperature" | "humidity" | "rssi" | "vazao"
+                    )
                   }
                 >
                   <SelectTrigger>
@@ -464,6 +466,7 @@ export default function MLAnalysisPage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="temperature">Temperatura</SelectItem>
+                    <SelectItem value="humidity">Umidade</SelectItem>
                     <SelectItem value="rssi">RSSI</SelectItem>
                     <SelectItem value="vazao">Vazão</SelectItem>
                   </SelectContent>

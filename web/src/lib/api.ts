@@ -229,7 +229,7 @@ export async function getChirpStackDevices(): Promise<ChirpStackDevice[]> {
 export interface MLAnalysisRequest {
   dataset: string
   analysis_type: "clustering" | "prediction" | "classification"
-  target_field: "temperature" | "rssi" | "vazao"
+  target_field: "temperature" | "humidity" | "rssi" | "vazao"
   time_range: string
 }
 

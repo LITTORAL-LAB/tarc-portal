@@ -25,6 +25,7 @@ def analyze_data(
 
     Campos disponíveis:
     - temperature: Temperatura
+    - humidity: Umidade
     - rssi: Sinal RSSI (se disponível)
     - vazao: Vazão/Fluxo
     """

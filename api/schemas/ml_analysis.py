@@ -15,6 +15,7 @@ class TargetField(str, Enum):
     """Campos disponíveis para análise."""
 
     TEMPERATURE = "temperature"
+    HUMIDITY = "humidity"
     RSSI = "rssi"
     VAZAO = "vazao"
 

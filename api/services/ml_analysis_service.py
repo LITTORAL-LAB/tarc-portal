@@ -33,6 +33,7 @@ class MLAnalysisService:
         """Mapeia target_field para sensor_type no banco."""
         field_map = {
             "temperature": "temperatura",
+            "humidity": "umidade",
             "rssi": "rssi",  # Se existir no banco
             "vazao": "fluxo",
         }
