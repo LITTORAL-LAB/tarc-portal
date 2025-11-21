@@ -225,3 +225,45 @@ export async function getChirpStackDevices(): Promise<ChirpStackDevice[]> {
   return response.json()
 }
 
+// Tipos para análise de Machine Learning
+export interface MLAnalysisRequest {
+  dataset: string
+  analysis_type: "clustering" | "prediction" | "classification"
+  target_field: "temperature" | "rssi" | "vazao"
+  time_range: string
+}
+
+export interface MLAnalysisResponse {
+  analysis_type: string
+  target_field: string
+  time_range: string
+  results: any
+  metadata: {
+    dataset: string
+    timestamp: string
+  }
+  message: string
+}
+
+/**
+ * Realiza análise de Machine Learning nos dados de sensores
+ */
+export async function performMLAnalysis(
+  request: MLAnalysisRequest
+): Promise<MLAnalysisResponse> {
+  const response = await fetch(`${API_URL}/ml/analyze`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({ detail: response.statusText }))
+    throw new Error(errorData.detail || `Erro ao realizar análise: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import DevicePage from "./pages/DevicePage";
 import ChirpStackEventsPage from "./pages/ChirpStackEventsPage";
+import MLAnalysisPage from "./pages/MLAnalysisPage";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<DashboardPage />} />
         <Route path="/device/:id" element={<DevicePage />} />
         <Route path="/chirpstack/events" element={<ChirpStackEventsPage />} />
+        <Route path="/ml/analysis" element={<MLAnalysisPage />} />
       </Routes>
     </BrowserRouter>
   );

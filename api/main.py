@@ -1,5 +1,6 @@
 from controllers.chirpstack_controller import router as chirpstack_router
 from controllers.device_controller import router as device_router
+from controllers.ml_analysis_controller import router as ml_analysis_router
 from controllers.packet_controller import router as packet_router
 from database import Base, engine
 from fastapi import FastAPI
@@ -24,6 +25,7 @@ app.add_middleware(
 app.include_router(packet_router)
 app.include_router(device_router)
 app.include_router(chirpstack_router)
+app.include_router(ml_analysis_router)
 
 
 @app.get("/")

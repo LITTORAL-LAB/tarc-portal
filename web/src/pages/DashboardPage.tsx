@@ -10,6 +10,7 @@ import {
   Loader2,
   AlertCircle,
   Radio,
+  Brain,
 } from "lucide-react";
 import { DeviceTable } from "@/components/device-table";
 import { getDevices, getStats, type Device, type Stats } from "@/lib/api";
@@ -216,8 +217,8 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* ChirpStack Quick Access */}
-        <div className="mb-8">
+        {/* Quick Access Cards */}
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-500/20">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -238,6 +239,31 @@ export default function DashboardPage() {
                 <Button size="lg" className="bg-blue-500 hover:bg-blue-600">
                   <Radio className="w-5 h-5 mr-2" />
                   Ver Eventos
+                </Button>
+              </Link>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-purple-500/20">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-lg bg-purple-500/20">
+                  <Brain className="w-8 h-8 text-purple-500" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-1">
+                    Análise de Machine Learning
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Execute análises de clustering, predição e classificação nos
+                    dados de sensores
+                  </p>
+                </div>
+              </div>
+              <Link to="/ml/analysis">
+                <Button size="lg" className="bg-purple-500 hover:bg-purple-600">
+                  <Brain className="w-5 h-5 mr-2" />
+                  Analisar
                 </Button>
               </Link>
             </div>
